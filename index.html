@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRS | Body Reshaping Studio – Rawalpindi</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #080808;
+    --deep: #0f0f0f;
+    --card: #141414;
+    --red: #e02020;
+    --red-dark: #b01818;
+    --red-glow: rgba(224,32,32,0.15);
+    --white: #f0f0f0;
+    --muted: #777;
+    --border: rgba(224,32,32,0.12);
+    --border-subtle: rgba(255,255,255,0.06);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--black); color:var(--white); font-family:'Inter',sans-serif; overflow-x:hidden; }
+  ::-webkit-scrollbar { width:3px; }
+  ::-webkit-scrollbar-track { background:var(--black); }
+  ::-webkit-scrollbar-thumb { background:var(--red); }
+
+  /* ─── NAV ─── */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 5%; height:68px;
+    background:rgba(8,8,8,0.94);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+  }
+
+  .nav-brand {
+    display:flex; align-items:center; gap:14px;
+    text-decoration:none;
+  }
+
+  .brand-badge {
+    width:44px; height:44px;
+    background:var(--red);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Anton',sans-serif;
+    font-size:0.85rem;
+    letter-spacing:1px;
+    color:#fff;
+    flex-shrink:0;
+    box-shadow:0 0 20px rgba(224,32,32,0.4);
+  }
+
+  .brand-text {
+    font-family:'Anton',sans-serif;
+    font-size:1.35rem;
+    letter-spacing:3px;
+    color:var(--white);
+    line-height:1;
+  }
+
+  .brand-text small {
+    display:block;
+    font-family:'Oswald',sans-serif;
+    font-size:0.58rem;
+    font-weight:400;
+    letter-spacing:2.5px;
+    color:var(--muted);
+    text-transform:uppercase;
+  }
+
+  .nav-links { display:flex; gap:32px; list-style:none; }
+
+  .nav-links a {
+    text-decoration:none;
+    color:var(--muted);
+    font-family:'Oswald',sans-serif;
+    font-size:0.78rem;
+    font-weight:500;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    transition:color 0.2s;
+  }
+
+  .nav-links a:hover { color:var(--red); }
+
+  .nav-cta {
+    background:var(--red);
+    color:#fff;
+    padding:10px 22px;
+    font-family:'Oswald',sans-serif;
+    font-size:0.8rem;
+    font-weight:600;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    text-decoration:none;
+    transition:all 0.2s;
+    border:none; cursor:pointer;
+  }
+
+  .nav-cta:hover { background:var(--red-dark); box-shadow:0 6px 20px rgba(224,32,32,0.4); }
+
+  .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+  .hamburger span { width:22px; height:2px; background:var(--white); transition:0.3s; }
+
+  /* ─── HERO ─── */
+  .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 5% 80px;
+      position: relative;
+      overflow: hidden;
+      margin-top: -72px;
+    }
+
+  .hero-bg {
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,.75),
+    rgba(0,0,0,.15)
+  );
+  z-index:1;
+}
+
+  .hero-visual {
+  position:absolute;
+  inset:0;
+
+  background:
+  linear-gradient(
+    to right,
+    rgba(0,0,0,.40) 0%,
+    rgba(0,0,0,.10) 45%,
+    rgba(0,0,0,.20) 100%
+  ),
+    url('hero.jpg');
+
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+
+  z-index:0;
+}
+
+  /* Right side team photo slot */
+  .hero-team-slot {
+    position:absolute; right:0; top:0; bottom:0; width:45%;
+    overflow:hidden; z-index:0;
+  }
+
+  .hero-team-slot img {
+    width:100%; height:100%;
+    object-fit:cover; object-position:center top;
+    filter:brightness(0.45) saturate(0.75);
+  }
+
+  .hero-team-slot::after {
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(to right, var(--black) 0%, rgba(8,8,8,0.6) 40%, transparent 70%);
+  }
+
+  .hero-content { position:relative; z-index:2; max-width:640px; }
+
+  .hero-tag {
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'Oswald',sans-serif;
+    font-size:0.72rem; font-weight:500;
+    letter-spacing:3.5px; text-transform:uppercase;
+    color:var(--red);
+    margin-bottom:22px;
+    animation:fadeUp 0.8s ease both;
+  }
+
+  .hero-tag::before { content:''; width:30px; height:1px; background:var(--red); }
+
+  .hero h1 {
+    font-family:'Anton',sans-serif;
+    font-size:clamp(3.8rem, 8.5vw, 7.5rem);
+    line-height:0.93;
+    letter-spacing:1px;
+    margin-bottom:10px;
+    animation:fadeUp 0.8s 0.1s ease both;
+  }
+
+  .hero h1 .outline {
+    -webkit-text-stroke:1.5px var(--red);
+    color:transparent;
+  }
+
+  .hero-slash {
+    font-family:'Anton',sans-serif;
+    font-size:clamp(1.2rem, 3vw, 2rem);
+    color:var(--red);
+    letter-spacing:6px;
+    text-transform:uppercase;
+    margin-bottom:28px;
+    animation:fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-desc {
+    font-size:0.95rem;
+    color:rgba(240,240,240,0.55);
+    line-height:1.8; font-weight:300;
+    max-width:440px;
+    margin-bottom:40px;
+    animation:fadeUp 0.8s 0.3s ease both;
+  }
+
+  .hero-actions {
+    display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+    animation:fadeUp 0.8s 0.4s ease both;
+  }
+
+  .btn-primary {
+    background:var(--red); color:#fff;
+    padding:15px 34px;
+    font-family:'Oswald',sans-serif;
+    font-size:0.85rem; font-weight:600;
+    letter-spacing:2.5px; text-transform:uppercase;
+    border:none; cursor:pointer; text-decoration:none;
+    display:inline-block; transition:all 0.2s;
+  }
+
+  .btn-primary:hover {
+    background:var(--red-dark);
+    box-shadow:0 8px 28px rgba(224,32,32,0.45);
+    transform:translateY(-2px);
+  }
+
+  .btn-ghost {
+    border:1px solid rgba(240,240,240,0.2);
+    color:var(--white); padding:14px 26px;
+    font-family:'Oswald',sans-serif;
+    font-size:0.85rem; font-weight:500;
+    letter-spacing:2px; text-transform:uppercase;
+    background:transparent; cursor:pointer;
+    text-decoration:none; display:inline-block; transition:all 0.2s;
+  }
+
+  .btn-ghost:hover { border-color:var(--red); color:var(--red); }
+
+  .hero-numbers {
+    position:absolute; bottom:90px; right:5%; z-index:2;
+    display:flex; gap:40px;
+    animation:fadeUp 0.8s 0.5s ease both;
+  }
+
+  .h-num { text-align:center; }
+  .h-num-val {
+    font-family:'Anton',sans-serif;
+    font-size:2.6rem; color:var(--red); line-height:1;
+  }
+  .h-num-label {
+    font-family:'Oswald',sans-serif;
+    font-size:0.65rem; font-weight:500;
+    letter-spacing:2px; text-transform:uppercase;
+    color:var(--muted); margin-top:4px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(36px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+
+  /* ─── TICKER ─── */
+  .ticker {
+    background:var(--red);
+    overflow:hidden; padding:10px 0;
+  }
+
+  .ticker-inner {
+    display:flex; gap:0;
+    animation:ticker 22s linear infinite;
+    white-space:nowrap;
+  }
+
+  .ticker-item {
+    font-family:'Anton',sans-serif;
+    font-size:0.78rem; letter-spacing:3px;
+    text-transform:uppercase; color:#fff;
+    padding:0 32px;
+    display:flex; align-items:center; gap:32px;
+  }
+
+  .ticker-item::after { content:'◆'; font-size:0.5rem; opacity:0.6; }
+
+  @keyframes ticker {
+    from { transform:translateX(0); }
+    to { transform:translateX(-50%); }
+  }
+
+  /* ─── SECTIONS ─── */
+  section { padding:96px 5%; }
+
+  .s-eye {
+    font-family:'Oswald',sans-serif;
+    font-size:0.72rem; font-weight:500;
+    letter-spacing:4px; text-transform:uppercase;
+    color:var(--red);
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:14px;
+  }
+
+  .s-eye::before { content:''; width:24px; height:1px; background:var(--red); }
+
+  .s-title {
+    font-family:'Anton',sans-serif;
+    font-size:clamp(2.6rem, 5vw, 4.2rem);
+    line-height:1; letter-spacing:1px;
+    margin-bottom:18px;
+  }
+
+  .s-title span { color:var(--red); }
+
+  .s-desc {
+    color:rgba(240,240,240,0.5);
+    font-size:0.92rem; line-height:1.8;
+    font-weight:300; max-width:520px;
+  }
+
+  /* ─── ABOUT ─── */
+  .about { background:var(--deep); }
+
+  .about-inner {
+    display:grid; grid-template-columns:1fr 1fr;
+    gap:80px; align-items:center;
+  }
+
+  .about-photo-wrap {
+    position:relative;
+  }
+
+  .about-photo-main {
+    width:100%; aspect-ratio:4/5;
+    overflow:hidden;
+    border:1px solid var(--border);
+  }
+
+  .about-photo-main img {
+    width:100%; height:100%;
+    object-fit:cover;
+    filter:brightness(0.85) saturate(0.85);
+    transition:transform 0.6s;
+  }
+
+  .about-photo-main:hover img { transform:scale(1.04); }
+
+  .about-accent {
+    position:absolute;
+    bottom:-18px; right:-18px;
+    width:120px; height:120px;
+    background:var(--red);
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    box-shadow:0 0 40px rgba(224,32,32,0.5);
+  }
+
+  .about-accent-num {
+    font-family:'Anton',sans-serif;
+    font-size:2.2rem; color:#fff; line-height:1;
+  }
+
+  .about-accent-txt {
+    font-family:'Oswald',sans-serif;
+    font-size:0.6rem; font-weight:600;
+    letter-spacing:1.5px; text-transform:uppercase;
+    color:rgba(255,255,255,0.85); text-align:center;
+    line-height:1.4; padding:0 8px;
+  }
+
+  .about-features {
+    display:grid; grid-template-columns:1fr 1fr;
+    gap:14px; margin-top:36px;
+  }
+
+  .af-item {
+    display:flex; align-items:flex-start; gap:12px;
+    padding:14px;
+    border:1px solid var(--border-subtle);
+    transition:border-color 0.2s;
+  }
+
+  .af-item:hover { border-color:var(--border); }
+
+  .af-icon {
+    width:34px; height:34px;
+    background:var(--red-glow);
+    border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.9rem; flex-shrink:0;
+  }
+
+  .af-label {
+    font-family:'Oswald',sans-serif;
+    font-size:0.82rem; font-weight:600;
+    letter-spacing:1px; text-transform:uppercase;
+    margin-bottom:2px;
+  }
+
+  .af-sub {
+    font-size:0.75rem; color:var(--muted); line-height:1.5;
+  }
+
+  /* ─── PACKAGES ─── */
+  .packages { background:var(--black); }
+
+  .pkg-grid {
+    display:grid; grid-template-columns:repeat(3,1fr);
+    gap:2px; margin-top:56px;
+    border:1px solid var(--border-subtle);
+  }
+
+  .pkg-card {
+    background:var(--card);
+    padding:44px 32px;
+    position:relative; overflow:hidden;
+    transition:background 0.3s;
+  }
+
+  .pkg-card::before {
+    content:''; position:absolute;
+    top:0; left:0; right:0; height:2px;
+    background:var(--border-subtle);
+    transition:background 0.3s;
+  }
+
+  .pkg-card:hover::before,
+  .pkg-card.hot::before { background:var(--red); }
+
+  .pkg-card.hot { background:#120808; }
+
+  .pkg-hot-tag {
+    display:inline-block;
+    background:var(--red); color:#fff;
+    font-family:'Oswald',sans-serif;
+    font-size:0.6rem; font-weight:700;
+    letter-spacing:2px; text-transform:uppercase;
+    padding:4px 10px; margin-bottom:20px;
+  }
+
+  .pkg-name {
+    font-family:'Anton',sans-serif;
+    font-size:1.7rem; letter-spacing:2px;
+    margin-bottom:8px;
+    text-transform:uppercase;
+  }
+
+  .pkg-price {
+    font-family:'Anton',sans-serif;
+    font-size:3.6rem; color:var(--red);
+    line-height:1; margin-bottom:4px;
+  }
+
+  .pkg-price span {
+    font-family:'Oswald',sans-serif;
+    font-size:0.9rem; color:var(--muted); font-weight:400;
+  }
+
+  .pkg-tagline {
+    font-size:0.82rem; color:var(--muted);
+    line-height:1.6; margin-bottom:28px;
+    font-style:italic;
+  }
+
+  .pkg-divider { height:1px; background:var(--border-subtle); margin-bottom:24px; }
+
+  .pkg-perks {
+    list-style:none;
+    display:flex; flex-direction:column; gap:11px;
+    margin-bottom:32px;
+  }
+
+  .pkg-perks li {
+    display:flex; align-items:center; gap:10px;
+    font-size:0.85rem; color:rgba(240,240,240,0.75);
+  }
+
+  .pkg-perks li::before { content:'—'; color:var(--red); font-weight:700; }
+
+  /* ─── GALLERY ─── */
+  .gallery { background:var(--deep); }
+
+  .gal-grid {
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    grid-template-rows:260px 260px;
+    gap:6px; margin-top:54px;
+  }
+
+  .gal-item {
+    overflow:hidden; position:relative;
+    background:var(--card);
+    border:1px solid var(--border-subtle);
+    cursor:pointer;
+  }
+
+  .gal-item img {
+    width:100%; height:100%;
+    object-fit:cover;
+    filter:brightness(0.65) saturate(0.8);
+    transition:transform 0.6s ease, filter 0.4s;
+  }
+
+  .gal-item:hover img {
+    transform:scale(1.07);
+    filter:brightness(0.9) saturate(1.1);
+  }
+
+  .gal-item:nth-child(1) { grid-column:span 6; grid-row:span 2; }
+  .gal-item:nth-child(2) { grid-column:span 6; }
+  .gal-item:nth-child(3) { grid-column:span 3; }
+  .gal-item:nth-child(4) { grid-column:span 3; }
+
+  .gal-overlay {
+    position:absolute; inset:0;
+    background:linear-gradient(transparent 50%, rgba(224,32,32,0.3) 100%);
+    opacity:0; transition:opacity 0.3s;
+  }
+
+  .gal-item:hover .gal-overlay { opacity:1; }
+
+  .gal-placeholder {
+    width:100%; height:100%;
+    background:linear-gradient(135deg, #141414, #1a1a1a);
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:8px;
+  }
+
+  .gal-placeholder svg { opacity:0.2; }
+  .gal-placeholder span {
+    font-family:'Oswald',sans-serif;
+    font-size:0.65rem; letter-spacing:2px;
+    text-transform:uppercase; color:#333;
+  }
+
+  /* ─── TEAM ─── */
+  .team { background:var(--black); }
+
+  .team-wrap {
+    display:grid; grid-template-columns:1.2fr 1fr;
+    gap:72px; align-items:center; margin-top:56px;
+  }
+
+  .team-photo {
+    position:relative;
+    border:1px solid var(--border);
+    overflow:hidden;
+  }
+
+  .team-photo img {
+    width:100%; display:block;
+    filter:brightness(0.88) saturate(0.85);
+    transition:transform 0.5s;
+  }
+
+  .team-photo:hover img { transform:scale(1.03); }
+
+  .team-photo::before {
+    content:'OUR TEAM';
+    position:absolute; bottom:0; left:0; right:0;
+    background:linear-gradient(transparent, rgba(8,8,8,0.9));
+    padding:40px 24px 20px;
+    font-family:'Anton',sans-serif;
+    font-size:1.1rem; letter-spacing:4px;
+    color:rgba(240,240,240,0.7);
+    z-index:1;
+  }
+
+  .team-points {
+    display:flex; flex-direction:column; gap:20px;
+  }
+
+  .tp-item {
+    display:flex; align-items:flex-start; gap:16px;
+    padding:20px;
+    border:1px solid var(--border-subtle);
+    transition:border-color 0.2s;
+  }
+
+  .tp-item:hover { border-color:var(--border); }
+
+  .tp-num {
+    font-family:'Anton',sans-serif;
+    font-size:2rem; color:var(--red);
+    line-height:1; flex-shrink:0; width:44px;
+  }
+
+  .tp-title {
+    font-family:'Oswald',sans-serif;
+    font-size:0.9rem; font-weight:600;
+    letter-spacing:1.5px; text-transform:uppercase;
+    margin-bottom:4px;
+  }
+
+  .tp-desc { font-size:0.82rem; color:var(--muted); line-height:1.6; }
+
+  /* ─── REVIEWS ─── */
+  .reviews { background:var(--deep); }
+
+  .rev-grid {
+    display:grid; grid-template-columns:repeat(3,1fr);
+    gap:16px; margin-top:56px;
+  }
+
+  .rev-card {
+    background:var(--card);
+    border:1px solid var(--border-subtle);
+    padding:28px;
+    transition:border-color 0.3s, transform 0.3s;
+  }
+
+  .rev-card:hover {
+    border-color:var(--border);
+    transform:translateY(-3px);
+  }
+
+  .rev-stars { display:flex; gap:3px; margin-bottom:18px; }
+  .rev-stars span { color:var(--red); font-size:0.85rem; }
+
+  .rev-text {
+    font-size:0.85rem; line-height:1.75;
+    color:rgba(240,240,240,0.65);
+    margin-bottom:22px; font-weight:300;
+    font-style:italic;
+  }
+
+  .rev-sep { height:1px; background:var(--border-subtle); margin-bottom:18px; }
+
+  .rev-person { display:flex; align-items:center; gap:12px; }
+
+  .rev-avatar {
+    width:36px; height:36px;
+    background:var(--red);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Anton',sans-serif; font-size:1rem; color:#fff;
+    flex-shrink:0;
+  }
+
+  .rev-name {
+    font-family:'Oswald',sans-serif;
+    font-size:0.88rem; font-weight:600; letter-spacing:1px;
+  }
+
+  .rev-meta { font-size:0.72rem; color:var(--muted); margin-top:2px; }
+
+  .rev-badge {
+    display:inline-flex; align-items:center; gap:12px;
+    margin-top:44px; padding:14px 22px;
+    border:1px solid var(--border-subtle);
+    background:var(--card);
+  }
+
+  .rev-badge-score {
+    font-family:'Anton',sans-serif;
+    font-size:2rem; color:var(--red); line-height:1;
+  }
+
+  .rev-badge-detail {
+    font-family:'Oswald',sans-serif;
+    font-size:0.7rem; letter-spacing:1.5px;
+    text-transform:uppercase; color:var(--muted);
+  }
+
+  /* ─── LOCATION ─── */
+  .location { background:var(--black); }
+
+  .loc-wrap {
+    display:grid; grid-template-columns:1fr 1.5fr;
+    gap:56px; margin-top:56px; align-items:start;
+  }
+
+  .loc-info { display:flex; flex-direction:column; gap:24px; }
+
+  .loc-row {
+    display:flex; align-items:flex-start; gap:14px;
+    padding:18px;
+    border:1px solid var(--border-subtle);
+  }
+
+  .loc-icon {
+    width:40px; height:40px;
+    background:var(--red-glow);
+    border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1rem; flex-shrink:0;
+  }
+
+  .loc-key {
+    font-family:'Oswald',sans-serif;
+    font-size:0.7rem; font-weight:600;
+    letter-spacing:2.5px; text-transform:uppercase;
+    color:var(--red); margin-bottom:4px;
+  }
+
+  .loc-val {
+    font-size:0.88rem; color:rgba(240,240,240,0.65);
+    line-height:1.6;
+  }
+
+  .loc-val a { color:var(--red); text-decoration:none; }
+
+  .map-box {
+    height:420px;
+    border:1px solid var(--border);
+    overflow:hidden; position:relative;
+  }
+
+  .map-box iframe {
+    width:100%; height:100%; border:0;
+    
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background:var(--deep);
+    border-top:1px solid var(--border-subtle);
+    padding:56px 5% 28px;
+  }
+
+  .footer-top {
+    display:grid; grid-template-columns:2fr 1fr 1fr 1.5fr;
+    gap:52px; margin-bottom:44px;
+  }
+
+  .f-logo {
+    font-family:'Anton',sans-serif;
+    font-size:1.9rem; letter-spacing:3px;
+    margin-bottom:14px;
+  }
+
+  .f-logo span { color:var(--red); }
+
+  .f-desc {
+    font-size:0.82rem; color:var(--muted);
+    line-height:1.75; font-weight:300; margin-bottom:22px;
+  }
+
+  .f-socials { display:flex; gap:10px; }
+
+  .f-social {
+    width:34px; height:34px;
+    border:1px solid var(--border-subtle);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--muted); text-decoration:none;
+    font-family:'Oswald',sans-serif; font-size:0.7rem;
+    font-weight:600; letter-spacing:1px;
+    transition:all 0.2s;
+  }
+
+  .f-social:hover { border-color:var(--red); color:var(--red); }
+
+  .f-head {
+    font-family:'Oswald',sans-serif;
+    font-size:0.7rem; font-weight:700;
+    letter-spacing:3px; text-transform:uppercase;
+    color:var(--red); margin-bottom:18px;
+  }
+
+  .f-links { list-style:none; display:flex; flex-direction:column; gap:10px; }
+
+  .f-links a {
+    text-decoration:none; font-size:0.82rem;
+    color:var(--muted); transition:color 0.2s;
+  }
+
+  .f-links a:hover { color:var(--white); }
+
+  .f-contact-row {
+    display:flex; align-items:flex-start; gap:10px;
+    margin-bottom:13px;
+  }
+
+  .f-contact-icon { color:var(--red); font-size:0.8rem; margin-top:2px; }
+
+  .f-contact-txt {
+    font-size:0.8rem; color:var(--muted); line-height:1.5;
+  }
+
+  .footer-bottom {
+    padding-top:24px;
+    border-top:1px solid var(--border-subtle);
+    display:flex; justify-content:space-between; align-items:center;
+  }
+
+  .f-copy { font-size:0.75rem; color:#444; }
+
+  .f-rating {
+    font-size:0.75rem; color:var(--muted);
+    display:flex; align-items:center; gap:6px;
+  }
+
+  .f-rating strong { color:var(--red); }
+
+  /* ─── REVEAL ─── */
+  .reveal {
+    opacity:0; transform:translateY(28px);
+    transition:opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .reveal.visible { opacity:1; transform:none; }
+  .rd1 { transition-delay:0.1s; }
+  .rd2 { transition-delay:0.2s; }
+  .rd3 { transition-delay:0.3s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media(max-width:1024px) {
+    .about-inner { grid-template-columns:1fr; }
+    .pkg-grid { grid-template-columns:1fr; max-width:440px; margin:56px auto 0; }
+    .team-wrap { grid-template-columns:1fr; }
+    .rev-grid { grid-template-columns:1fr; max-width:480px; }
+    .loc-wrap { grid-template-columns:1fr; }
+    .footer-top { grid-template-columns:1fr 1fr; gap:36px; }
+    .hero-numbers { position:relative; bottom:auto; right:auto; margin-top:36px; justify-content:flex-start; }
+  }
+
+  @media(max-width:768px) {
+    .nav-links, .nav-cta { display:none; }
+    .hamburger { display:flex; }
+    .hero { padding-bottom:60px; }
+    .hero-team-slot { display:none; }
+    .gal-grid { grid-template-columns:1fr 1fr; grid-template-rows:auto; }
+    .gal-item { grid-column:span 1 !important; grid-row:span 1 !important; height:180px; }
+    .footer-top { grid-template-columns:1fr; }
+    .footer-bottom { flex-direction:column; gap:10px; text-align:center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <img src="logo.png" alt="BRS Logo" style="width:50px;height:50px;object-fit:contain;">
+  <div class="brand-text">
+    BODY RESHAPING
+    <small>Studio · Rawalpindi</small>
+  </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#location">Location</a></li>
+  </ul>
+  <a href="tel:+923058562226" class="nav-cta">Join Now</a>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  
+  <div class="hero-visual"></div>
+  <div class="hero-bg"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">Rawalpindi · Range Road</div>
+    <h1>LET'S <span class="outline">RESHAPE</span><br>YOUR BODY</h1>
+    <div class="hero-slash">GYM · CARDIO · CROSSFIT</div>
+    <p class="hero-desc">
+      Central AC environment. Advanced machines. Expert trainers. No crowd — just discipline, 
+      vision, and results. This is where your transformation begins.
+    </p>
+    <div class="hero-actions">
+      <a href="#packages" class="btn-primary">View Packages</a>
+      <a href="#location" class="btn-ghost">Find Us</a>
+    </div>
+    
+  </div>
+  <div class="hero-numbers">
+      <div class="h-num">
+        <div class="h-num-val">4.6★</div>
+        <div class="h-num-label">Google</div>
+      </div>
+      <div class="h-num">
+        <div class="h-num-val">5+</div>
+        <div class="h-num-label">Years Running</div>
+      </div>
+      <div class="h-num">
+        <div class="h-num-val">AC</div>
+        <div class="h-num-label">Environment</div>
+      </div>
+    </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">Gym</span>
+    <span class="ticker-item">Cardio</span>
+    <span class="ticker-item">CrossFit</span>
+    <span class="ticker-item">Ladies Classes</span>
+    <span class="ticker-item">Orthopaedic Consultation</span>
+    <span class="ticker-item">Masnoon Hijama</span>
+    <span class="ticker-item">Fat Loss Programs</span>
+    <span class="ticker-item">Personal Training</span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item">Gym</span>
+    <span class="ticker-item">Cardio</span>
+    <span class="ticker-item">CrossFit</span>
+    <span class="ticker-item">Ladies Classes</span>
+    <span class="ticker-item">Orthopaedic Consultation</span>
+    <span class="ticker-item">Masnoon Hijama</span>
+    <span class="ticker-item">Fat Loss Programs</span>
+    <span class="ticker-item">Personal Training</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-photo-wrap reveal">
+      <div class="about-photo-main">
+        <!-- Replace with actual gym interior photo -->
+        <div style="width:100%;aspect-ratio:4/5;background:linear-gradient(135deg,#141414,#1c1c1c);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;color:#333;">
+          <img src="gym-interior.jpg" alt="Gym Interior">
+        </div>
+      </div>
+      <div class="about-accent">
+        <div class="about-accent-num">AC</div>
+        <div class="about-accent-txt">Central<br>Cooled</div>
+      </div>
+    </div>
+
+    <div class="reveal rd1">
+      <div class="s-eye">About BRS</div>
+      <h2 class="s-title">A STUDIO FOR<br><span>REAL CHANGE</span></h2>
+      <p class="s-desc">
+        Located at Range Road near Dr. Naheed Gull Clinic, Rawalpindi — Body Reshaping Studio is built 
+        around one principle: no crowd, no distractions, just crafted workouts and real results. 
+        From strength to cardio, from discipline to transformation.
+      </p>
+
+      <div class="about-features">
+        <div class="af-item">
+          <div class="af-icon">❄️</div>
+          <div>
+            <div class="af-label">Central AC</div>
+            <div class="af-sub">Full climate control for comfort</div>
+          </div>
+        </div>
+        <div class="af-item">
+          <div class="af-icon">⚡</div>
+          <div>
+            <div class="af-label">Latest Equipment</div>
+            <div class="af-sub">Advanced machines, always maintained</div>
+          </div>
+        </div>
+        <div class="af-item">
+          <div class="af-icon">👩</div>
+          <div>
+            <div class="af-label">Ladies Classes</div>
+            <div class="af-sub">Dedicated sessions 10AM–10PM</div>
+          </div>
+        </div>
+        <div class="af-item">
+          <div class="af-icon">🩺</div>
+          <div>
+            <div class="af-label">Orthopaedic Consult</div>
+            <div class="af-sub">Expert guidance for safe training</div>
+          </div>
+        </div>
+        <div class="af-item">
+          <div class="af-icon">🌿</div>
+          <div>
+            <div class="af-label">Masnoon Hijama</div>
+            <div class="af-sub">Traditional cupping therapy facility</div>
+          </div>
+        </div>
+        <div class="af-item">
+          <div class="af-icon">📋</div>
+          <div>
+            <div class="af-label">Fat Loss Programs</div>
+            <div class="af-sub">Structured schedule with expert support</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="packages" id="packages">
+  <div class="s-eye reveal">Membership</div>
+  <h2 class="s-title reveal">CHOOSE YOUR<br><span>PROGRAM</span></h2>
+  <p class="s-desc reveal">Straightforward pricing. No hidden fees. Pick the program that matches your goal.</p>
+
+  <div class="pkg-grid reveal rd1">
+    <div class="pkg-card">
+      <div class="pkg-name">CrossFit</div>
+      <div class="pkg-price">2,000<span> PKR/mo</span></div>
+      <div class="pkg-tagline">"Lift, jump, push, pull — CrossFit builds warriors, not excuses."</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-perks">
+        <li>Full CrossFit floor access</li>
+        <li>Functional training equipment</li>
+        <li>Group & personal coaching</li>
+        <li>Central AC environment</li>
+        <li>Separate changing facilities</li>
+      </ul>
+      <a href="tel:+923058562226" class="btn-ghost" style="display:block;text-align:center;padding:13px;">Enquire</a>
+    </div>
+
+    <div class="pkg-card hot">
+      <div class="pkg-hot-tag">Most Popular</div>
+      <div class="pkg-name">Gym</div>
+      <div class="pkg-price">3,000<span> PKR/mo</span></div>
+      <div class="pkg-tagline">"Face the weight, feel the burn, and unleash the power inside you."</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-perks">
+        <li>Full gym floor access</li>
+        <li>Dumbbells & advanced machines</li>
+        <li>Personal trainer guidance</li>
+        <li>Fat loss program access</li>
+        <li>Central AC environment</li>
+        <li>Separate changing facilities</li>
+      </ul>
+      <a href="tel:+923058562226" class="btn-primary" style="display:block;text-align:center;padding:13px;">Join Now</a>
+    </div>
+
+    <div class="pkg-card">
+      <div class="pkg-name">Cardio</div>
+      <div class="pkg-price">4,000<span> PKR/mo</span></div>
+      <div class="pkg-tagline">"Run harder, sweat stronger, and build the endurance of a warrior."</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-perks">
+        <li>Full cardio floor access</li>
+        <li>Treadmills & cardio machines</li>
+        <li>Body reshaping program</li>
+        <li>Scheduled fat loss sessions</li>
+        <li>Central AC environment</li>
+        <li>Separate changing facilities</li>
+      </ul>
+      <a href="tel:+923058562226" class="btn-ghost" style="display:block;text-align:center;padding:13px;">Enquire</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="s-eye reveal">Inside BRS</div>
+  <h2 class="s-title reveal">THE <span>FACILITY</span></h2>
+
+  <div class="gal-grid reveal rd1">
+    <div class="gal-item">
+      <!-- REPLACE: Large gym floor photo -->
+      <div class="gal-placeholder">
+        
+        <img src="main-floor.jpg" alt="Main Floor">
+      </div>
+      <div class="gal-overlay"></div>
+    </div>
+    <div class="gal-item">
+      <div class="gal-placeholder">
+        
+        <img src="cardio.jpg" alt="cardio">
+      </div>
+      <div class="gal-overlay"></div>
+    </div>
+    <div class="gal-item">
+      <div class="gal-placeholder">
+        
+        <img src="equip.jpg" alt="Equipment">
+      </div>
+      <div class="gal-overlay"></div>
+    </div>
+    <div class="gal-item">
+      <div class="gal-placeholder">
+        
+       <img src="training.jpg" alt="Training">
+      </div>
+      <div class="gal-overlay"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="s-eye reveal">The People</div>
+  <h2 class="s-title reveal">COACHES &<br><span>STAFF</span></h2>
+
+  <div class="team-wrap">
+    <div class="team-photo reveal">
+      <img src="team.jpg" alt="BRS Team"
+           onerror="this.style.display='none'">
+    </div>
+
+    <div class="team-points reveal rd1">
+      <div class="tp-item">
+        <div class="tp-num">01</div>
+        <div>
+          <div class="tp-title">Misbah Ud Din — Owner & Head Trainer</div>
+          <div class="tp-desc">Leadership built on discipline, vision, and years of relentless hard work. He personally guides members through the transformation journey.</div>
+        </div>
+      </div>
+      <div class="tp-item">
+        <div class="tp-num">02</div>
+        <div>
+          <div class="tp-title">Mr. Fasih — Personal Trainer</div>
+          <div class="tp-desc">Highly knowledgeable and dedicated. Supportive approach that pushes members to reach their fitness goals with consistent progress.</div>
+        </div>
+      </div>
+      <div class="tp-item">
+        <div class="tp-num">03</div>
+        <div>
+          <div class="tp-title">Female Trainers Available</div>
+          <div class="tp-desc">Dedicated female coaching staff for ladies classes and personal training sessions in a comfortable, private environment.</div>
+        </div>
+      </div>
+      <div class="tp-item">
+        <div class="tp-num">04</div>
+        <div>
+          <div class="tp-title">Cooperative Support Staff</div>
+          <div class="tp-desc">Every staff member treats you as a friend — always available, always helpful. No intimidation, just genuine support.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="s-eye reveal">What Members Say</div>
+  <h2 class="s-title reveal">MEMBER <span>REVIEWS</span></h2>
+
+  <div class="rev-grid reveal rd1">
+    <div class="rev-card">
+      <div class="rev-stars">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+      <p class="rev-text">"Loving my first couple of months at BRS! The trainers are super supportive and knowledgeable. Mr. Fasih is attentive to everyone's needs — I've already seen noticeable improvements in my fitness and energy. Highly recommend for anyone looking to transform."</p>
+      <div class="rev-sep"></div>
+      <div class="rev-person">
+        <div class="rev-avatar">D</div>
+        <div>
+          <div class="rev-name">Doctor Furrakh</div>
+          <div class="rev-meta">Google Review · 7 months ago</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rev-card">
+      <div class="rev-stars">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+      <p class="rev-text">"Highly recommended! Great gym with every piece of equipment up to date and well maintained. Staff is cooperative and helps you like a friend. You feel motivated here — every second person seems to have a great body."</p>
+      <div class="rev-sep"></div>
+      <div class="rev-person">
+        <div class="rev-avatar">H</div>
+        <div>
+          <div class="rev-name">Haseeb Sarfraz</div>
+          <div class="rev-meta">Google Review · 1 year ago</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rev-card">
+      <div class="rev-stars">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+      <p class="rev-text">"Discovered BRS through a friend and haven't looked back. The focus here is pure — no distractions, no overcrowding. Just real equipment and real people. The atmosphere keeps you coming back."</p>
+      <div class="rev-sep"></div>
+      <div class="rev-person">
+        <div class="rev-avatar">A</div>
+        <div>
+          <div class="rev-name">Ahmad K.</div>
+          <div class="rev-meta">Member · Rawalpindi</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rev-badge reveal">
+    <div class="rev-badge-score">4.6</div>
+    <div>
+      <div style="color:var(--red);font-size:0.9rem;margin-bottom:2px;">★★★★★</div>
+      <div class="rev-badge-detail">Rated on Google · 214 Reviews</div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location" id="location">
+  <div class="s-eye reveal">Find Us</div>
+  <h2 class="s-title reveal">OUR <span>LOCATION</span></h2>
+
+  <div class="loc-wrap">
+    <div class="loc-info reveal">
+      <div class="loc-row">
+        <div class="loc-icon">📍</div>
+        <div>
+          <div class="loc-key">Address</div>
+          <div class="loc-val">Range Road, near Dr. Naheed Gull Clinic,<br>Qasim Market, Rawalpindi, Punjab</div>
+        </div>
+      </div>
+      <div class="loc-row">
+        <div class="loc-icon">📞</div>
+        <div>
+          <div class="loc-key">Phone / WhatsApp</div>
+          <div class="loc-val"><a href="tel:+923058562226">+92 305 8562226</a></div>
+        </div>
+      </div>
+      <div class="loc-row">
+        <div class="loc-icon"><i class="fab fa-instagram"></i></div>
+        <div>
+          <div class="loc-key">Instagram</div>
+          <div class="loc-val"><a href="https://www.instagram.com/bodyreshapingstudio/" target="_blank">@bodyreshapingstudio</a></div>
+        </div>
+      </div>
+      <div class="loc-row">
+        <div class="loc-icon"><i class="fab fa-facebook-f"></i></div>
+        <div>
+          <div class="loc-key">Facebook</div>
+          <div class="loc-val"><a href="https://www.facebook.com/bodyreshapingstudio/" target="_blank">Body Reshaping Studio</a></div>
+        </div>
+      </div>
+      <a href="tel:+923058562226" class="btn-primary" style="margin-top:8px;">Call to Enroll</a>
+    </div>
+
+    <div class="map-box reveal rd1">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4495.9814759087885!2d73.02432097655345!3d33.59739304160941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38df9527b6258b19%3A0x1bb120f7307e1566!2sBody%20Reshaping%20Studio!5e1!3m2!1sen!2s!4v1780675261116!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="f-logo">BRS <span>GYM</span></div>
+      <p class="f-desc">
+        A studio where you can re-shape and transform your existing body as you desire, 
+        with professional services for achievement of your goals. No crowd. No distractions. Real results.
+      </p>
+      <div class="f-socials">
+        <a href="https://www.instagram.com/bodyreshapingstudio/" target="_blank" class="f-social"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/bodyreshapingstudio/" target="_blank" class="f-social"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://wa.me/923366666787" target="_blank" class="f-social"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+
+    <div>
+      <div class="f-head">Navigate</div>
+      <ul class="f-links">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#team">Our Team</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="f-head">Programs</div>
+      <ul class="f-links">
+        <li><a href="#packages">Gym</a></li>
+        <li><a href="#packages">Cardio</a></li>
+        <li><a href="#packages">CrossFit</a></li>
+        <li><a href="#about">Ladies Classes</a></li>
+        <li><a href="#about">Fat Loss Programs</a></li>
+        <li><a href="#about">Personal Training</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="f-head">Contact</div>
+      <div class="f-contact-row">
+        <span class="f-contact-icon">📍</span>
+        <span class="f-contact-txt">Range Road, near Dr. Naheed Gull Clinic, Rawalpindi</span>
+      </div>
+      <div class="f-contact-row">
+        <span class="f-contact-icon">📞</span>
+        <span class="f-contact-txt">+92 305 8562226</span>
+      </div>
+      <div class="f-contact-row">
+        <span class="f-contact-icon">🕐</span>
+        <span class="f-contact-txt">Open Daily · Ladies 10AM–10PM</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="f-copy">© 2025 Body Reshaping Studio, Rawalpindi. All rights reserved.</div>
+    <div class="f-rating">Rated <strong>4.6★</strong> on Google · Crafted for real workouts and real results</div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+function toggleMenu() {
+  const links = document.querySelector('.nav-links');
+  const isOpen = links.style.display === 'flex';
+  links.style.cssText = isOpen ? '' : `
+    display:flex; flex-direction:column;
+    position:fixed; top:68px; left:0; right:0;
+    background:rgba(8,8,8,0.97);
+    padding:20px 5%;
+    border-bottom:1px solid rgba(224,32,32,0.12);
+    gap:18px; z-index:99;
+  `;
+}
+
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if(window.scrollY >= s.offsetTop - 80) cur = s.id; });
+  navLinks.forEach(a => { a.style.color = a.getAttribute('href') === `#${cur}` ? 'var(--red)' : ''; });
+});
+</script>
+</body>
+</html>

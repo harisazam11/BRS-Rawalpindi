@@ -823,7 +823,121 @@
     .footer-top { grid-template-columns:1fr 1fr; gap:36px; }
     .hero-numbers { position:relative; bottom:auto; right:auto; margin-top:36px; justify-content:flex-start; }
   }
+  @media(max-width:768px) {
 
+  .nav-links,
+  .nav-cta {
+    display:none;
+  }
+
+  .hamburger {
+    display:flex;
+  }
+
+  /* HERO FIXES */
+  .hero {
+    min-height:100vh;
+    justify-content:center;
+    padding:90px 20px 40px;
+    margin-top:0;
+    text-align:center;
+  }
+
+  .hero-content {
+    max-width:100%;
+    margin:auto;
+  }
+
+  .hero-tag {
+    justify-content:center;
+    margin-bottom:16px;
+  }
+
+  .hero h1 {
+    font-size:clamp(2.8rem, 12vw, 4.5rem);
+    line-height:0.95;
+  }
+
+  .hero-slash {
+    font-size:0.9rem;
+    letter-spacing:3px;
+    margin-bottom:20px;
+  }
+
+  .hero-desc {
+    max-width:100%;
+    font-size:0.9rem;
+    line-height:1.7;
+    margin-bottom:28px;
+    color:rgba(240,240,240,0.75);
+  }
+
+  .hero-actions {
+    justify-content:center;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    width:100%;
+    max-width:260px;
+  }
+
+  .hero-numbers {
+    position:relative;
+    right:auto;
+    bottom:auto;
+    margin-top:40px;
+    width:100%;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+  }
+
+  .h-num {
+    padding:12px;
+    border:1px solid rgba(255,255,255,0.08);
+    background:rgba(255,255,255,0.02);
+  }
+
+  .h-num-val {
+    font-size:1.8rem;
+  }
+
+  .h-num-label {
+    font-size:0.55rem;
+  }
+
+  /* Better mobile image positioning */
+  .hero-visual {
+    background-position:65% center;
+  }
+
+  .hero-team-slot {
+    display:none;
+  }
+
+  .gal-grid {
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:auto;
+  }
+
+  .gal-item {
+    grid-column:span 1 !important;
+    grid-row:span 1 !important;
+    height:180px;
+  }
+
+  .footer-top {
+    grid-template-columns:1fr;
+  }
+
+  .footer-bottom {
+    flex-direction:column;
+    gap:10px;
+    text-align:center;
+  }
+}
   @media(max-width:768px) {
     .nav-links, .nav-cta { display:none; }
     .hamburger { display:flex; }

@@ -43,19 +43,6 @@
     text-decoration:none;
   }
 
-  .brand-badge {
-    width:44px; height:44px;
-    background:var(--red);
-    border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Anton',sans-serif;
-    font-size:0.85rem;
-    letter-spacing:1px;
-    color:#fff;
-    flex-shrink:0;
-    box-shadow:0 0 20px rgba(224,32,32,0.4);
-  }
-
   .brand-text {
     font-family:'Anton',sans-serif;
     font-size:1.35rem;
@@ -110,66 +97,46 @@
 
   /* ─── HERO ─── */
   .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 5% 80px;
-      position: relative;
-      overflow: hidden;
-      margin-top: -72px;
-    }
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:0 5% 80px;
+    padding-top:68px; /* offset for fixed nav */
+    position:relative;
+    overflow:hidden;
+  }
 
   .hero-bg {
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    to top,
-    rgba(0,0,0,.75),
-    rgba(0,0,0,.15)
-  );
-  z-index:1;
-}
+    position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(0,0,0,.80), rgba(0,0,0,.15));
+    z-index:1;
+  }
 
   .hero-visual {
-  position:absolute;
-  inset:0;
-
-  background:
-  linear-gradient(
-    to right,
-    rgba(0,0,0,.40) 0%,
-    rgba(0,0,0,.10) 45%,
-    rgba(0,0,0,.20) 100%
-  ),
-    url('hero.jpg');
-
-  background-size:cover;
-  background-position:center center;
-  background-repeat:no-repeat;
-
-  z-index:0;
-}
-
-  /* Right side team photo slot */
-  .hero-team-slot {
-    position:absolute; right:0; top:0; bottom:0; width:45%;
-    overflow:hidden; z-index:0;
-  }
-
-  .hero-team-slot img {
-    width:100%; height:100%;
-    object-fit:cover; object-position:center top;
-    filter:brightness(0.45) saturate(0.75);
-  }
-
-  .hero-team-slot::after {
-    content:'';
     position:absolute; inset:0;
-    background:linear-gradient(to right, var(--black) 0%, rgba(8,8,8,0.6) 40%, transparent 70%);
+    background:
+      linear-gradient(to right, rgba(0,0,0,.50) 0%, rgba(0,0,0,.15) 50%, rgba(0,0,0,.25) 100%),
+      url('hero.jpg');
+    background-size:cover;
+    background-position:center center;
+    background-repeat:no-repeat;
+    z-index:0;
   }
 
-  .hero-content { position:relative; z-index:2; max-width:640px; }
+  /* hero inner: content left, numbers right — no absolute positioning */
+  .hero-inner {
+    position:relative;
+    z-index:2;
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:40px;
+    width:100%;
+    animation:fadeUp 0.8s ease both;
+  }
+
+  .hero-content { max-width:620px; flex-shrink:0; }
 
   .hero-tag {
     display:inline-flex; align-items:center; gap:10px;
@@ -178,18 +145,16 @@
     letter-spacing:3.5px; text-transform:uppercase;
     color:var(--red);
     margin-bottom:22px;
-    animation:fadeUp 0.8s ease both;
   }
 
   .hero-tag::before { content:''; width:30px; height:1px; background:var(--red); }
 
   .hero h1 {
     font-family:'Anton',sans-serif;
-    font-size:clamp(3.8rem, 8.5vw, 7.5rem);
+    font-size:clamp(3.5rem, 7.5vw, 7.5rem);
     line-height:0.93;
     letter-spacing:1px;
     margin-bottom:10px;
-    animation:fadeUp 0.8s 0.1s ease both;
   }
 
   .hero h1 .outline {
@@ -199,12 +164,11 @@
 
   .hero-slash {
     font-family:'Anton',sans-serif;
-    font-size:clamp(1.2rem, 3vw, 2rem);
+    font-size:clamp(1rem, 2.5vw, 2rem);
     color:var(--red);
     letter-spacing:6px;
     text-transform:uppercase;
     margin-bottom:28px;
-    animation:fadeUp 0.8s 0.2s ease both;
   }
 
   .hero-desc {
@@ -213,12 +177,10 @@
     line-height:1.8; font-weight:300;
     max-width:440px;
     margin-bottom:40px;
-    animation:fadeUp 0.8s 0.3s ease both;
   }
 
   .hero-actions {
     display:flex; align-items:center; gap:16px; flex-wrap:wrap;
-    animation:fadeUp 0.8s 0.4s ease both;
   }
 
   .btn-primary {
@@ -249,17 +211,22 @@
 
   .btn-ghost:hover { border-color:var(--red); color:var(--red); }
 
+  /* numbers column — sits beside content on large screens */
   .hero-numbers {
-    position:absolute; bottom:90px; right:5%; z-index:2;
-    display:flex; gap:40px;
-    animation:fadeUp 0.8s 0.5s ease both;
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+    flex-shrink:0;
+    padding-bottom:6px;
   }
 
   .h-num { text-align:center; }
+
   .h-num-val {
     font-family:'Anton',sans-serif;
     font-size:2.6rem; color:var(--red); line-height:1;
   }
+
   .h-num-label {
     font-family:'Oswald',sans-serif;
     font-size:0.65rem; font-weight:500;
@@ -336,9 +303,7 @@
     gap:80px; align-items:center;
   }
 
-  .about-photo-wrap {
-    position:relative;
-  }
+  .about-photo-wrap { position:relative; }
 
   .about-photo-main {
     width:100%; aspect-ratio:4/5;
@@ -407,9 +372,7 @@
     margin-bottom:2px;
   }
 
-  .af-sub {
-    font-size:0.75rem; color:var(--muted); line-height:1.5;
-  }
+  .af-sub { font-size:0.75rem; color:var(--muted); line-height:1.5; }
 
   /* ─── PACKAGES ─── */
   .packages { background:var(--black); }
@@ -509,6 +472,7 @@
     object-fit:cover;
     filter:brightness(0.65) saturate(0.8);
     transition:transform 0.6s ease, filter 0.4s;
+    display:block;
   }
 
   .gal-item:hover img {
@@ -528,20 +492,6 @@
   }
 
   .gal-item:hover .gal-overlay { opacity:1; }
-
-  .gal-placeholder {
-    width:100%; height:100%;
-    background:linear-gradient(135deg, #141414, #1a1a1a);
-    display:flex; flex-direction:column;
-    align-items:center; justify-content:center; gap:8px;
-  }
-
-  .gal-placeholder svg { opacity:0.2; }
-  .gal-placeholder span {
-    font-family:'Oswald',sans-serif;
-    font-size:0.65rem; letter-spacing:2px;
-    text-transform:uppercase; color:#333;
-  }
 
   /* ─── TEAM ─── */
   .team { background:var(--black); }
@@ -713,13 +663,10 @@
   .map-box {
     height:420px;
     border:1px solid var(--border);
-    overflow:hidden; position:relative;
+    overflow:hidden;
   }
 
-  .map-box iframe {
-    width:100%; height:100%; border:0;
-    
-  }
+  .map-box iframe { width:100%; height:100%; border:0; }
 
   /* ─── FOOTER ─── */
   footer {
@@ -752,9 +699,7 @@
     width:34px; height:34px;
     border:1px solid var(--border-subtle);
     display:flex; align-items:center; justify-content:center;
-    color:var(--muted); text-decoration:none;
-    font-family:'Oswald',sans-serif; font-size:0.7rem;
-    font-weight:600; letter-spacing:1px;
+    color:var(--muted); text-decoration:none; font-size:0.85rem;
     transition:all 0.2s;
   }
 
@@ -782,10 +727,7 @@
   }
 
   .f-contact-icon { color:var(--red); font-size:0.8rem; margin-top:2px; }
-
-  .f-contact-txt {
-    font-size:0.8rem; color:var(--muted); line-height:1.5;
-  }
+  .f-contact-txt { font-size:0.8rem; color:var(--muted); line-height:1.5; }
 
   .footer-bottom {
     padding-top:24px;
@@ -813,140 +755,85 @@
   .rd2 { transition-delay:0.2s; }
   .rd3 { transition-delay:0.3s; }
 
-  /* ─── RESPONSIVE ─── */
+  /* ════════════════════════════════
+     RESPONSIVE
+  ════════════════════════════════ */
+
+  /* Large desktop tweak */
+  @media(max-width:1400px) {
+    .hero h1 { font-size:clamp(3.5rem, 7vw, 7rem); }
+    .footer-top { gap:36px; }
+  }
+
+  /* ── Laptop (1024–1280px) — the broken zone ── */
+  @media(max-width:1280px) {
+    nav { padding:0 4%; }
+    .nav-links { gap:22px; }
+    .nav-links a { font-size:0.75rem; letter-spacing:1.5px; }
+
+    section { padding:80px 4%; }
+
+    /* Hero: stack content above stats */
+    .hero { padding:100px 4% 60px; }
+    .hero-inner { flex-direction:column; align-items:flex-start; gap:32px; }
+    .hero h1 { font-size:clamp(3.2rem, 6.5vw, 6rem); }
+    .hero-numbers { flex-direction:row; gap:36px; }
+    .h-num-val { font-size:2.2rem; }
+
+    /* About */
+    .about-inner { gap:50px; }
+
+    /* Packages — keep 3 col but tighter */
+    .pkg-card { padding:32px 22px; }
+    .pkg-price { font-size:3rem; }
+
+    /* Gallery rows shorter */
+    .gal-grid { grid-template-rows:220px 220px; }
+
+    /* Team */
+    .team-wrap { gap:48px; }
+
+    /* Footer */
+    .footer-top { grid-template-columns:1.5fr 1fr 1fr 1.2fr; gap:28px; }
+  }
+
+  /* ── Tablet ── */
   @media(max-width:1024px) {
     .about-inner { grid-template-columns:1fr; }
     .pkg-grid { grid-template-columns:1fr; max-width:440px; margin:56px auto 0; }
     .team-wrap { grid-template-columns:1fr; }
-    .rev-grid { grid-template-columns:1fr; max-width:480px; }
+    .rev-grid { grid-template-columns:1fr 1fr; }
     .loc-wrap { grid-template-columns:1fr; }
     .footer-top { grid-template-columns:1fr 1fr; gap:36px; }
-    .hero-numbers { position:relative; bottom:auto; right:auto; margin-top:36px; justify-content:flex-start; }
-  }
-  @media(max-width:768px) {
-
-  .nav-links,
-  .nav-cta {
-    display:none;
   }
 
-  .hamburger {
-    display:flex;
-  }
-
-  /* HERO FIXES */
-  .hero {
-    min-height:100vh;
-    justify-content:center;
-    padding:90px 20px 40px;
-    margin-top:0;
-    text-align:center;
-  }
-
-  .hero-content {
-    max-width:100%;
-    margin:auto;
-  }
-
-  .hero-tag {
-    justify-content:center;
-    margin-bottom:16px;
-  }
-
-  .hero h1 {
-    font-size:clamp(2.8rem, 12vw, 4.5rem);
-    line-height:0.95;
-  }
-
-  .hero-slash {
-    font-size:0.9rem;
-    letter-spacing:3px;
-    margin-bottom:20px;
-  }
-
-  .hero-desc {
-    max-width:100%;
-    font-size:0.9rem;
-    line-height:1.7;
-    margin-bottom:28px;
-    color:rgba(240,240,240,0.75);
-  }
-
-  .hero-actions {
-    justify-content:center;
-  }
-
-  .btn-primary,
-  .btn-ghost {
-    width:100%;
-    max-width:260px;
-  }
-
-  .hero-numbers {
-    position:relative;
-    right:auto;
-    bottom:auto;
-    margin-top:40px;
-    width:100%;
-
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
-  }
-
-  .h-num {
-    padding:12px;
-    border:1px solid rgba(255,255,255,0.08);
-    background:rgba(255,255,255,0.02);
-  }
-
-  .h-num-val {
-    font-size:1.8rem;
-  }
-
-  .h-num-label {
-    font-size:0.55rem;
-  }
-
-  /* Better mobile image positioning */
-  .hero-visual {
-    background-position:65% center;
-  }
-
-  .hero-team-slot {
-    display:none;
-  }
-
-  .gal-grid {
-    grid-template-columns:1fr 1fr;
-    grid-template-rows:auto;
-  }
-
-  .gal-item {
-    grid-column:span 1 !important;
-    grid-row:span 1 !important;
-    height:180px;
-  }
-
-  .footer-top {
-    grid-template-columns:1fr;
-  }
-
-  .footer-bottom {
-    flex-direction:column;
-    gap:10px;
-    text-align:center;
-  }
-}
+  /* ── Mobile ── */
   @media(max-width:768px) {
     .nav-links, .nav-cta { display:none; }
     .hamburger { display:flex; }
-    .hero { padding-bottom:60px; }
-    .hero-team-slot { display:none; }
+
+    .hero { padding:90px 5% 50px; }
+    .hero-inner { flex-direction:column; align-items:flex-start; gap:28px; }
+    .hero h1 { font-size:clamp(2.8rem, 12vw, 4.5rem); }
+    .hero-slash { font-size:0.9rem; letter-spacing:3px; margin-bottom:20px; }
+    .hero-numbers { flex-direction:row; gap:20px; }
+    .h-num-val { font-size:1.9rem; }
+
+    .rev-grid { grid-template-columns:1fr; max-width:480px; }
+
     .gal-grid { grid-template-columns:1fr 1fr; grid-template-rows:auto; }
     .gal-item { grid-column:span 1 !important; grid-row:span 1 !important; height:180px; }
+
     .footer-top { grid-template-columns:1fr; }
     .footer-bottom { flex-direction:column; gap:10px; text-align:center; }
+  }
+
+  @media(max-width:480px) {
+    .hero-actions { flex-direction:column; align-items:flex-start; }
+    .hero-numbers { gap:14px; }
+    .h-num-val { font-size:1.6rem; }
+    .about-features { grid-template-columns:1fr; }
+    .hero-desc { font-size:0.88rem; }
   }
 </style>
 </head>
@@ -955,11 +842,11 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-brand">
-    <img src="logo.png" alt="BRS Logo" style="width:50px;height:50px;object-fit:contain;">
-  <div class="brand-text">
-    BODY RESHAPING
-    <small>Studio · Rawalpindi</small>
-  </div>
+    <img src="logo.png" alt="BRS Logo" style="width:46px;height:46px;object-fit:contain;">
+    <div class="brand-text">
+      BODY RESHAPING
+      <small>Studio · Rawalpindi</small>
+    </div>
   </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
@@ -977,25 +864,25 @@
 
 <!-- HERO -->
 <section class="hero" id="home">
-  
   <div class="hero-visual"></div>
   <div class="hero-bg"></div>
 
-  <div class="hero-content">
-    <div class="hero-tag">Rawalpindi · Range Road</div>
-    <h1>LET'S <span class="outline">RESHAPE</span><br>YOUR BODY</h1>
-    <div class="hero-slash">GYM · CARDIO · CROSSFIT</div>
-    <p class="hero-desc">
-      Central AC environment. Advanced machines. Expert trainers. No crowd — just discipline, 
-      vision, and results. This is where your transformation begins.
-    </p>
-    <div class="hero-actions">
-      <a href="#packages" class="btn-primary">View Packages</a>
-      <a href="#location" class="btn-ghost">Find Us</a>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-tag">Rawalpindi · Range Road</div>
+      <h1>LET'S <span class="outline">RESHAPE</span><br>YOUR BODY</h1>
+      <div class="hero-slash">GYM · CARDIO · CROSSFIT</div>
+      <p class="hero-desc">
+        Central AC environment. Advanced machines. Expert trainers. No crowd — just discipline,
+        vision, and results. This is where your transformation begins.
+      </p>
+      <div class="hero-actions">
+        <a href="#packages" class="btn-primary">View Packages</a>
+        <a href="#location" class="btn-ghost">Find Us</a>
+      </div>
     </div>
-    
-  </div>
-  <div class="hero-numbers">
+
+    <div class="hero-numbers">
       <div class="h-num">
         <div class="h-num-val">4.6★</div>
         <div class="h-num-label">Google</div>
@@ -1009,6 +896,7 @@
         <div class="h-num-label">Environment</div>
       </div>
     </div>
+  </div>
 </section>
 
 <!-- TICKER -->
@@ -1022,7 +910,6 @@
     <span class="ticker-item">Masnoon Hijama</span>
     <span class="ticker-item">Fat Loss Programs</span>
     <span class="ticker-item">Personal Training</span>
-    <!-- duplicate for seamless loop -->
     <span class="ticker-item">Gym</span>
     <span class="ticker-item">Cardio</span>
     <span class="ticker-item">CrossFit</span>
@@ -1039,10 +926,8 @@
   <div class="about-inner">
     <div class="about-photo-wrap reveal">
       <div class="about-photo-main">
-        <!-- Replace with actual gym interior photo -->
-        <div style="width:100%;aspect-ratio:4/5;background:linear-gradient(135deg,#141414,#1c1c1c);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;color:#333;">
-          <img src="gym-interior.jpg" alt="Gym Interior">
-        </div>
+        <img src="gym-interior.jpg" alt="BRS Gym Interior"
+          onerror="this.parentElement.style.background='linear-gradient(135deg,#141414,#1c1c1c)'">
       </div>
       <div class="about-accent">
         <div class="about-accent-num">AC</div>
@@ -1054,8 +939,8 @@
       <div class="s-eye">About BRS</div>
       <h2 class="s-title">A STUDIO FOR<br><span>REAL CHANGE</span></h2>
       <p class="s-desc">
-        Located at Range Road near Dr. Naheed Gull Clinic, Rawalpindi — Body Reshaping Studio is built 
-        around one principle: no crowd, no distractions, just crafted workouts and real results. 
+        Located at Range Road near Dr. Naheed Gull Clinic, Rawalpindi — Body Reshaping Studio is built
+        around one principle: no crowd, no distractions, just crafted workouts and real results.
         From strength to cardio, from discipline to transformation.
       </p>
 
@@ -1122,7 +1007,7 @@
       <ul class="pkg-perks">
         <li>Full CrossFit floor access</li>
         <li>Functional training equipment</li>
-        <li>Group & personal coaching</li>
+        <li>Group &amp; personal coaching</li>
         <li>Central AC environment</li>
         <li>Separate changing facilities</li>
       </ul>
@@ -1137,7 +1022,7 @@
       <div class="pkg-divider"></div>
       <ul class="pkg-perks">
         <li>Full gym floor access</li>
-        <li>Dumbbells & advanced machines</li>
+        <li>Dumbbells &amp; advanced machines</li>
         <li>Personal trainer guidance</li>
         <li>Fat loss program access</li>
         <li>Central AC environment</li>
@@ -1153,7 +1038,7 @@
       <div class="pkg-divider"></div>
       <ul class="pkg-perks">
         <li>Full cardio floor access</li>
-        <li>Treadmills & cardio machines</li>
+        <li>Treadmills &amp; cardio machines</li>
         <li>Body reshaping program</li>
         <li>Scheduled fat loss sessions</li>
         <li>Central AC environment</li>
@@ -1171,32 +1056,23 @@
 
   <div class="gal-grid reveal rd1">
     <div class="gal-item">
-      <!-- REPLACE: Large gym floor photo -->
-      <div class="gal-placeholder">
-        
-        <img src="main-floor.jpg" alt="Main Floor">
-      </div>
+      <img src="main-floor.jpg" alt="Main Floor"
+        onerror="this.style.display='none'">
       <div class="gal-overlay"></div>
     </div>
     <div class="gal-item">
-      <div class="gal-placeholder">
-        
-        <img src="cardio.jpg" alt="cardio">
-      </div>
+      <img src="cardio.jpg" alt="Cardio"
+        onerror="this.style.display='none'">
       <div class="gal-overlay"></div>
     </div>
     <div class="gal-item">
-      <div class="gal-placeholder">
-        
-        <img src="equip.jpg" alt="Equipment">
-      </div>
+      <img src="equip.jpg" alt="Equipment"
+        onerror="this.style.display='none'">
       <div class="gal-overlay"></div>
     </div>
     <div class="gal-item">
-      <div class="gal-placeholder">
-        
-       <img src="training.jpg" alt="Training">
-      </div>
+      <img src="training.jpg" alt="Training"
+        onerror="this.style.display='none'">
       <div class="gal-overlay"></div>
     </div>
   </div>
@@ -1205,7 +1081,7 @@
 <!-- TEAM -->
 <section class="team" id="team">
   <div class="s-eye reveal">The People</div>
-  <h2 class="s-title reveal">COACHES &<br><span>STAFF</span></h2>
+  <h2 class="s-title reveal">COACHES &amp;<br><span>STAFF</span></h2>
 
   <div class="team-wrap">
     <div class="team-photo reveal">
@@ -1217,7 +1093,7 @@
       <div class="tp-item">
         <div class="tp-num">01</div>
         <div>
-          <div class="tp-title">Misbah Ud Din — Owner & Head Trainer</div>
+          <div class="tp-title">Misbah Ud Din — Owner &amp; Head Trainer</div>
           <div class="tp-desc">Leadership built on discipline, vision, and years of relentless hard work. He personally guides members through the transformation journey.</div>
         </div>
       </div>
@@ -1357,7 +1233,7 @@
     <div>
       <div class="f-logo">BRS <span>GYM</span></div>
       <p class="f-desc">
-        A studio where you can re-shape and transform your existing body as you desire, 
+        A studio where you can re-shape and transform your existing body as you desire,
         with professional services for achievement of your goals. No crowd. No distractions. Real results.
       </p>
       <div class="f-socials">
@@ -1414,32 +1290,34 @@
 </footer>
 
 <script>
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  // Mobile menu
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    const isOpen = links.style.display === 'flex';
+    links.style.cssText = isOpen ? '' : `
+      display:flex; flex-direction:column;
+      position:fixed; top:68px; left:0; right:0;
+      background:rgba(8,8,8,0.97);
+      padding:20px 5%;
+      border-bottom:1px solid rgba(224,32,32,0.12);
+      gap:18px; z-index:99;
+    `;
+  }
 
-function toggleMenu() {
-  const links = document.querySelector('.nav-links');
-  const isOpen = links.style.display === 'flex';
-  links.style.cssText = isOpen ? '' : `
-    display:flex; flex-direction:column;
-    position:fixed; top:68px; left:0; right:0;
-    background:rgba(8,8,8,0.97);
-    padding:20px 5%;
-    border-bottom:1px solid rgba(224,32,32,0.12);
-    gap:18px; z-index:99;
-  `;
-}
-
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll', () => {
-  let cur = '';
-  sections.forEach(s => { if(window.scrollY >= s.offsetTop - 80) cur = s.id; });
-  navLinks.forEach(a => { a.style.color = a.getAttribute('href') === `#${cur}` ? 'var(--red)' : ''; });
-});
+  // Active nav on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if(window.scrollY >= s.offsetTop - 80) cur = s.id; });
+    navLinks.forEach(a => { a.style.color = a.getAttribute('href') === `#${cur}` ? 'var(--red)' : ''; });
+  });
 </script>
 </body>
 </html>
